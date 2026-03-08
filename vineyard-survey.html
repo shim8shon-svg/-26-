@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>סקר לבלוב גפן היין 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;700;900&family=Assistant:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green-dark: #1a3a2a;
+  --green-mid: #2d6a4f;
+  --green-light: #52b788;
+  --green-pale: #d8f3dc;
+  --cream: #faf7f2;
+  --amber: #c77b2a;
+  --amber-light: #f0a500;
+  --text: #1a2e1e;
+  --text-muted: #5a7a62;
+  --border: #b7d5be;
+  --white: #ffffff;
+  --red-grape: #7b2d42;
+  --error: #c0392b;
+}
+
+body {
+  font-family: 'Assistant', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(45,106,79,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 100% 100%, rgba(199,123,42,0.06) 0%, transparent 50%);
+}
+
+/* ---- HEADER ---- */
+.hero {
+  background: var(--green-dark);
+  padding: 52px 24px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+.hero-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.hero h1 {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.hero p {
+  color: var(--green-light);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.hero-line {
+  width: 48px;
+  height: 3px;
+  background: var(--amber-light);
+  border-radius: 2px;
+  margin: 18px auto 0;
+  position: relative;
+}
+
+/* ---- LAYOUT ---- */
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+/* ---- SECTION ---- */
+.section {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(26,58,42,0.06);
+  animation: slideUp 0.5s ease both;
+}
+
+.section:nth-child(1) { animation-delay: 0.05s; }
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.15s; }
+.section:nth-child(4) { animation-delay: 0.2s; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--green-pale);
+}
+
+.section-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--green-pale);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+/* ---- FIELDS ---- */
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field-grid.single { grid-template-columns: 1fr; }
+.field-grid.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+.field label .req { color: var(--red-grape); margin-right: 2px; }
+
+.field input,
+.field select {
+  font-family: 'Assistant', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7a62' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 14px center;
+  padding-left: 36px;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(45,106,79,0.12);
+  background: var(--white);
+}
+
+.field input::placeholder { color: #adc4b2; }
+
+/* ---- RADIO GROUP ---- */
+.radio-group {
+  display: flex;
+  gap: 12px;
+}
+
+.radio-btn {
+  flex: 1;
+  position: relative;
+}
+
+.radio-btn input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-btn label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.radio-btn input[type="radio"]:checked + label {
+  background: var(--green-pale);
+  border-color: var(--green-mid);
+  color: var(--green-dark);
+}
+
+.radio-btn.red input[type="radio"]:checked + label {
+  background: #fde8ee;
+  border-color: var(--red-grape);
+  color: var(--red-grape);
+}
+
+/* ---- TOGGLE ---- */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  gap: 12px;
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.toggle {
+  position: relative;
+  width: 46px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.toggle input { opacity: 0; width: 0; height: 0; }
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 26px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-track::before {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  right: 3px; top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.toggle input:checked + .toggle-track { background: var(--green-mid); }
+.toggle input:checked + .toggle-track::before { transform: translateX(-20px); }
+
+.dormancy-date {
+  margin-top: 14px;
+  display: none;
+}
+.dormancy-date.visible { display: flex; flex-direction: column; gap: 7px; }
+
+/* ---- SUBMIT ---- */
+.submit-section {
+  margin-top: 8px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 17px;
+  background: var(--green-dark);
+  color: white;
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(26,58,42,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-btn:hover { background: var(--green-mid); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,58,42,0.3); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.required-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+/* ---- SUCCESS ---- */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 60px 24px;
+  animation: slideUp 0.5s ease both;
+}
+
+.success-screen.visible { display: block; }
+
+.success-icon {
+  font-size: 72px;
+  margin-bottom: 20px;
+  animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes pop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.success-screen h2 {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 2rem;
+  color: var(--green-dark);
+  margin-bottom: 10px;
+}
+
+.success-screen p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+.success-btn {
+  padding: 12px 32px;
+  background: var(--green-pale);
+  color: var(--green-dark);
+  font-family: 'Assistant', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid var(--green-mid);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.success-btn:hover { background: var(--green-light); color: white; }
+
+/* ---- TOAST ---- */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--error);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px 24px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.toast.success { background: var(--green-mid); }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---- SPINNER ---- */
+.spinner {
+  width: 20px; height: 20px;
+  border: 2.5px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: none;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 520px) {
+  .field-grid { grid-template-columns: 1fr; }
+  .field-grid.triple { grid-template-columns: 1fr 1fr; }
+  .section { padding: 24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-icon">🍇</span>
+  <h1>סקר לבלוב גפן היין</h1>
+  <p>דיווח תצפיות לבלוב גפן 2026</p>
+  <div class="hero-line"></div>
+</div>
+
+<div class="container">
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✅</div>
+    <h2>הדיווח נקלט בהצלחה!</h2>
+    <p>תודה על מילוי הסקר. הנתונים שלך נשמרו בגיליון.</p>
+    <button class="success-btn" onclick="resetForm()">שלח דיווח נוסף</button>
+  </div>
+
+  <!-- FORM -->
+  <div id="formWrapper">
+
+    <!-- Section 1: Farmer Info -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">👨‍🌾</div>
+        <div class="section-title">פרטי כורם</div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label>שם הכורם <span class="req">*</span></label>
+          <input type="text" id="farmerName" placeholder="הזן שם מלא"/>
+        </div>
+        <div class="field">
+          <label>מיקום הכרם (ישוב קרוב) <span class="req">*</span></label>
+          <input type="text" id="vineyard" placeholder="הזן שם ישוב"/>
+        </div>
+      </div>
+      <div class="field-grid single" style="margin-top:16px">
+        <div class="field">
+          <label>אזור גידול <span class="req">*</span></label>
+          <select id="region">
+            <option value="">בחר אזור</option>
+            <option>שפלת יהודה</option>
+            <option>הרי יהודה</option>
+            <option>גליל עליון</option>
+            <option>גליל תחתון</option>
+            <option>רמת הגולן</option>
+            <option>נגב</option>
+            <option>שרון</option>
+            <option>שומרון</option>
+            <option>עמק יזרעאל</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Variety -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🍷</div>
+        <div class="section-title">סוג הגפן</div>
+      </div>
+
+      <div class="field" style="margin-bottom:16px">
+        <label>סוג זן <span class="req">*</span></label>
+        <div class="radio-group">
+          <div class="radio-btn red">
+            <input type="radio" name="varietyType" id="typeRed" value="red" onchange="onVarietyTypeChange()"/>
+            <label for="typeRed">🔴 אדום</label>
+          </div>
+          <div class="radio-btn">
+            <input type="radio" name="varietyType" id="typeWhite" value="white" onchange="onVarietyTypeChange()"/>
+            <label for="typeWhite">⚪ לבן</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field" id="varietyField" style="display:none; margin-bottom:16px">
+        <label>זן <span class="req">*</span></label>
+        <select id="variety">
+          <option value="">בחר זן</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>כנה</label>
+        <select id="rootstock">
+          <option value="">בחר כנה</option>
+          <option>ריכטר 110</option>
+          <option>רוג'רי 140</option>
+          <option>1103P</option>
+          <option>SO4</option>
+          <option>101-14</option>
+          <option>ללא כנה</option>
+          <option>לא ידוע</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Section 3: Dates -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📅</div>
+        <div class="section-title">תאריכים</div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label>תאריך זמירה</label>
+          <input type="date" id="pruningDate"/>
+        </div>
+        <div class="field">
+          <label>תאריך לבלוב 50% <span class="req">*</span></label>
+          <input type="date" id="bloomStartDate"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Dormancy -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💤</div>
+        <div class="section-title">שובר תרדמה</div>
+      </div>
+
+      <div class="toggle-row">
+        <span class="toggle-label">האם השתמשת בשובר תרדמה?</span>
+        <label class="toggle">
+          <input type="checkbox" id="dormancyToggle" onchange="toggleDormancy()"/>
+          <div class="toggle-track"></div>
+        </label>
+      </div>
+
+      <div class="dormancy-date field" id="dormancyDateField">
+        <label>תאריך יישום <span class="req">*</span></label>
+        <input type="date" id="dormancyBreakerDate"/>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-section">
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+        <span class="spinner" id="spinner"></span>
+        <span id="btnText">שלח דיווח ✦</span>
+      </button>
+      <p class="required-note">* שדות חובה</p>
+    </div>
+
+  </div><!-- /formWrapper -->
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHo0FmbKovfueCE4c_L3LfYOnUKdFXyA6wsmJszBf1VC_sFzt9VcUGYtDiIvTiEExs/exec";
+
+const VARIETIES = {
+  red: [
+    "אליקנט בושה (Alicante Bouschet)","ארגמן","ברברה (Barbera)","ביתוני",
+    "גראנש נואר (Grenache Noir)","דוריף/פטיט סירה (Durif/Petite Sirah)",
+    "זינפנדל (Zinfandel)","טאנט (Tannat)","טוריגה נסיונל (Touriga Nacional)",
+    "טמפרניו (Tempranillo)","יעל","מלבק (Malbec)","מורבדרה (Mourvèdre)",
+    "מרלו (Merlot)","נביולו (Nebbiolo)","סאן ג'ובזה (Sangiovese)",
+    "סנסאו (Cinsaut)","סירה/שיראז (Syrah/Shiraz)","פטי ורדו (Petit Verdot)",
+    "פינו נואר (Pinot Noir)","פינוטאז' (Pinotage)","צורימאן שחור",
+    "קברנה סוביניון (Cabernet Sauvignon)","קברנה פרנק (Cabernet Franc)",
+    "קריניאן (Carignan)","רובי קברנה (Ruby Cabernet)"
+  ],
+  white: [
+    "אסירטיקו (Assyrtiko)","ג'נדאלי","גוורצטרמינר (Gewürztraminer)",
+    "גראנש בלאן (Grenache Blanc)","דבוקי","ויונייה (Viognier)",
+    "ורדלו (Verdelho)","חמדאני/מראווי","מוסקט אלכסנדרוני",
+    "סוביניון בלאן (Sauvignon Blanc)","סמיון (Sémillon)",
+    "פינו גרי (Pinot Gris)","קולומבר (Colombard)","ריזלינג (Riesling)",
+    "רוסאן (Roussanne)","שנין בלאן (Chenin Blanc)","שרדונה (Chardonnay)"
+  ]
+};
+
+function onVarietyTypeChange() {
+  const type = document.querySelector('input[name="varietyType"]:checked')?.value;
+  const sel = document.getElementById('variety');
+  const field = document.getElementById('varietyField');
+  if (!type) return;
+  field.style.display = 'flex';
+  sel.innerHTML = '<option value="">בחר זן</option>';
+  VARIETIES[type].forEach(v => {
+    const o = document.createElement('option');
+    o.value = v; o.textContent = v;
+    sel.appendChild(o);
+  });
+}
+
+function toggleDormancy() {
+  const on = document.getElementById('dormancyToggle').checked;
+  const f = document.getElementById('dormancyDateField');
+  f.classList.toggle('visible', on);
+}
+
+function showToast(msg, type = 'error') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(() => t.className = 'toast ' + type, 3200);
+}
+
+function resetForm() {
+  document.getElementById('successScreen').classList.remove('visible');
+  document.getElementById('formWrapper').style.display = '';
+  document.getElementById('farmerName').value = '';
+  document.getElementById('vineyard').value = '';
+  document.getElementById('region').value = '';
+  document.querySelectorAll('input[name="varietyType"]').forEach(r => r.checked = false);
+  document.getElementById('varietyField').style.display = 'none';
+  document.getElementById('variety').innerHTML = '<option value="">בחר זן</option>';
+  document.getElementById('rootstock').value = '';
+  document.getElementById('pruningDate').value = '';
+  document.getElementById('bloomStartDate').value = '';
+  document.getElementById('dormancyToggle').checked = false;
+  document.getElementById('dormancyDateField').classList.remove('visible');
+  document.getElementById('dormancyBreakerDate').value = '';
+}
+
+async function submitForm() {
+  const farmerName   = document.getElementById('farmerName').value.trim();
+  const vineyard     = document.getElementById('vineyard').value.trim();
+  const region       = document.getElementById('region').value;
+  const varietyType  = document.querySelector('input[name="varietyType"]:checked')?.value || '';
+  const variety      = document.getElementById('variety').value;
+  const rootstock    = document.getElementById('rootstock').value;
+  const pruningDate  = document.getElementById('pruningDate').value;
+  const bloomStartDate = document.getElementById('bloomStartDate').value;
+  const dormancyOn   = document.getElementById('dormancyToggle').checked;
+  const dormancyBreakerDate = document.getElementById('dormancyBreakerDate').value;
+
+  if (!farmerName)    { showToast('אנא הזן שם כורם'); return; }
+  if (!vineyard)      { showToast('אנא הזן מיקום כרם'); return; }
+  if (!region)        { showToast('אנא בחר אזור גידול'); return; }
+  if (!varietyType)   { showToast('אנא בחר סוג זן'); return; }
+  if (!variety)       { showToast('אנא בחר זן'); return; }
+  if (!bloomStartDate){ showToast('אנא הזן תאריך לבלוב 50%'); return; }
+  if (dormancyOn && !dormancyBreakerDate) { showToast('אנא הזן תאריך יישום שובר תרדמה'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  const spinner = document.getElementById('spinner');
+  const btnText = document.getElementById('btnText');
+  btn.disabled = true;
+  spinner.style.display = 'block';
+  btnText.textContent = 'שולח...';
+
+  const payload = {
+    farmerName, vineyard, region, varietyType, variety, rootstock,
+    pruningDate,
+    usedDormancyBreaker: dormancyOn ? 'yes' : 'no',
+    dormancyBreakerDate: dormancyOn ? dormancyBreakerDate : '',
+    bloomStartDate
+  };
+
+  try {
+    await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+    document.getElementById('formWrapper').style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  } catch (err) {
+    showToast('שגיאה בשליחה. בדוק את החיבור לאינטרנט.');
+  } finally {
+    btn.disabled = false;
+    spinner.style.display = 'none';
+    btnText.textContent = 'שלח דיווח ✦';
+  }
+}
+</script>
+</body>
+</html>
